@@ -1,0 +1,40 @@
+{
+	"name": "math-poly",
+	"private": true,
+	"version": "1.0.0",
+	"author": "Yuri Sulyma",
+	"description": "Scripts for the paper \"RO(G)-graded norms for prismatic and de Rham-Witt theory\"",
+	"keywords": [
+		"mathjax",
+		"react",
+		"typescript"
+	],
+	"main": "src/index.tsx",
+	"dependencies": {
+		"@liqvid/katex": "^0.1.0",
+		"@liqvid/mathjax": "0.1.2",
+		"@liqvid/utils": "^1.10.0",
+		"classnames": "^2.5.1",
+		"radix-ui": "^1.4.2",
+		"react": "^19",
+		"react-dom": "^19",
+		"react-katex": "^3.1",
+		"tailwindcss": "^4.1.11"
+	},
+	"devDependencies": {
+		"@tailwindcss/vite": "^4.1.11",
+		"@types/katex": "^0.16.7",
+		"@types/react": "19.1.8",
+		"@types/react-dom": "19.1.6",
+		"@types/react-katex": "^3.0.4",
+		"@vitejs/plugin-react-swc": "^3.11.0",
+		"typescript": "^5.8",
+		"vite": "^7.0.6"
+	},
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	}
+}
