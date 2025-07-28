@@ -1,6 +1,6 @@
 # math-poly
 
-This repository contains source code for interactive versions of the figures in my paper **RO(G)-graded norms for prismatic and de Rham-Witt theory**.
+This repository contains source code for interactive versions of the figures in my (forthcoming) paper _RO(G)-graded norms for prismatic and de Rham-Witt theory_.
 
 ## Installation
 
