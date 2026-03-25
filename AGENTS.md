@@ -128,6 +128,7 @@ export interface TRConfig {
 - Use `useEffect` for side effects
 - Use `useState` for local component state
 - Wrap app in `React.StrictMode`
+- Use `input.valueAsNumber` instead of `parseInt(input.value)` for number inputs
 
 ### Comments and Documentation
 

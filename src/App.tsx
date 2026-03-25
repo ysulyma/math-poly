@@ -1,4 +1,4 @@
-import { KTX as $ } from "@liqvid/katex/plain";
+import { KTX as $ } from "@liqvid/katex";
 // import {MJX} from "@liqvid/mathjax/plain";
 import { Tabs } from "radix-ui";
 import type { JSX } from "react";
@@ -16,7 +16,11 @@ interface TabData {
 const tabs: TabData[] = [
 	{
 		key: "tr",
-		title: <>TR</>,
+		title: (
+			<>
+				<$>{String.raw`\mathrm{TR}_\bigstar`}</$>
+			</>
+		),
 		component: TR,
 	},
 ];
@@ -29,7 +33,7 @@ export default function App() {
 				(forthcoming) paper{" "}
 				<cite>
 					<$>{"\\mathrm{RO}(G)"}</$>-graded norms for prismatic and de Rham-Witt
-					theory
+					forms
 				</cite>
 				. The source code is available{" "}
 				<a

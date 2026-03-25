@@ -12,6 +12,7 @@ export const macros = raw`
 \newcommand{\rc}{\right\rceil}
 \newcommand{\dlog}{\,\operatorname{dlog}\,}
 
+\newcommand{\fade}[1]{\textcolor{lightgray}{#1}}
 \newcommand{\can}{\mathrm{can}}
 \newcommand{\Nyg}{\mathcal N}
 \newcommand{\prism}{
@@ -19,6 +20,8 @@ export const macros = raw`
 }
 
 \newcommand{\dRW}[1][]{\mathrm W_{#1}\Omega}
+
+
 \newcommand{\TR}{\mathrm{TR}}
 \newcommand{\Fil}{\mathrm{Fil}}
 
@@ -35,4 +38,8 @@ export const macros = raw`
 \newcommand{\T}{\mathbf T}
 \newcommand{\W}{\mathbf W}
 \newcommand{\Z}{\mathbf Z}
+
+% KaTeX-only
+
+\ktxnewcommand{\dRW}[1]{\mathrm W_{#1}\Omega}
 `;
