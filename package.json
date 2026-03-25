@@ -11,14 +11,13 @@
 	],
 	"main": "src/index.tsx",
 	"dependencies": {
-		"@liqvid/katex": "^0.1.0",
-		"@liqvid/mathjax": "0.1.2",
-		"@liqvid/utils": "^1.10.0",
+		"@liqvid/katex": "^1.0.0-alpha.0",
+		"@liqvid/mathjax": "^0.1.2",
+		"@liqvid/utils": "^2.0.0-alpha.2",
 		"classnames": "^2.5.1",
 		"radix-ui": "^1.4.2",
 		"react": "^19",
 		"react-dom": "^19",
-		"react-katex": "^3.1",
 		"tailwindcss": "^4.1.11"
 	},
 	"devDependencies": {
@@ -26,7 +25,6 @@
 		"@types/katex": "^0.16.7",
 		"@types/react": "19.1.8",
 		"@types/react-dom": "19.1.6",
-		"@types/react-katex": "^3.0.4",
 		"@vitejs/plugin-react-swc": "^3.11.0",
 		"typescript": "^5.8",
 		"vite": "^7.0.6"

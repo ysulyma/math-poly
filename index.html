@@ -54,18 +54,18 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- MathJax -->
+    <!-- MathJax v3 with XyJax extension -->
     <script>
       window.MathJax = {
         loader: {
           load: [
-            "[custom]/load-head.js",
             "[custom]/xypic.js",
             "[tex]/color.js",
             "[tex]/html.js",
+            "[tex]/ams.js",
           ],
           paths: {
-            custom: "https://cdn.jsdelivr.net/gh/ysulyma/mathjax-extensions/",
+            custom: "https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/",
           },
         },
         options: {
@@ -75,11 +75,11 @@
           typeset: false, // don't perform initial typeset
         },
         tex: {
-          packages: {"[+]": ["color", "load-head", "html", "xypic"]},
+          packages: {"[+]": ["color", "html", "ams", "xypic"]},
         },
       };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg-full.js"></script>
     <script src="./symbols.tex" type="math/tex"></script>
   </head>
 

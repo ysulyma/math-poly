@@ -18,6 +18,8 @@ export const macros = raw`
   {\class{prism}{\Delta}}
 }
 
+\newcommand{\dRW}[1][]{\mathrm W_{#1}\Omega}
+
 % single-letters
 \newcommand{\C}{\mathbf C}
 \newcommand{\F}{\mathbf F}
