@@ -1,7 +1,8 @@
 import { MJX } from "@liqvid/mathjax/plain";
-import { range } from "@liqvid/utils";
+import { constrain, range } from "@liqvid/utils";
 import { useCallback, useEffect, useState } from "react";
 import { macros } from "../macros";
+import { fmt } from "../utils";
 
 /** Configuration for the TR interface */
 export interface TRConfig {
@@ -56,9 +57,10 @@ export function renderTRMathJax(config: TRConfig): void {
 }
 
 export function TR() {
-	const [n, setN] = useState(0);
-	const [alpha, setCoefficients] = useState<number[]>([0]);
-	const [ringType, setRingType] = useState<TRConfig["ringType"]>("char-p");
+	const [n, setN] = useState(2);
+	const [alpha, setCoefficients] = useState<number[]>([1, 2, 3]);
+	const [ringType, setRingType] =
+		useState<TRConfig["ringType"]>("torsion-free");
 	const [page, setSpectralSequenceRange] = useState(0);
 
 	// Update coefficients array when n changes
@@ -192,7 +194,7 @@ export function TR() {
 			{/* Spectral sequence range slider */}
 			<div className="tr-spectral-section">
 				<label htmlFor="tr-spectral-range">
-					<strong>Spectral sequence range:</strong> {page}
+					<strong>Spectral sequence page:</strong> {page}
 				</label>
 				<input
 					id="tr-spectral-range"
@@ -205,10 +207,12 @@ export function TR() {
 				/>
 				<span className="tr-spectral-bounds">0 to {n + 1}</span>
 			</div>
-			<MJX>{macros}</MJX>
+			<div hidden>
+				<MJX>{macros}</MJX>
+			</div>
 
 			{/* MathJax output container */}
-			<HOTRSS key={key(config)} {...config} />
+			<HOTRSS key={key(config)} {...config} k={0} l={config.n} />
 		</div>
 	);
 }
@@ -219,26 +223,37 @@ function key({ ringType, alpha }: TRConfig) {
 
 const { raw } = String;
 
-function HOTRSS({ n, alpha, page, ringType }: TRConfig) {
-	const rows = range(n + 1).map((r) => {
-		r = n + 1 - r;
-		if (alpha[r] < 0) return "";
+function HOTRSS({
+	n,
+	alpha,
+	page,
+	ringType,
+	k,
+}: TRConfig & {
+	k: number;
+	l: number;
+}) {
+	const rows = range(n + 1).map((s) => {
+		s = n - s;
+		if (alpha[s] < 0) return "";
 
 		let left = "";
 		let right = "";
 
 		// char p
 		if (ringType === "char-p") {
-			// left
-			left = raw`\dRW[${r - 1}]^j_S`;
+			if (s > 0) {
+				// left
+				left = raw`\dRW[${s - 1}]^j_S`;
 
-			const leftTwist = 0;
-			if (leftTwist !== 0) {
-				left += raw`\otimes \{ p^{${leftTwist} \}`;
+				const leftTwist = 0;
+				if (leftTwist !== 0) {
+					left += raw`\otimes \{ p^{${leftTwist} \}`;
+				}
 			}
 
 			// right
-			right = raw`\dRW[${r}]^j_S`;
+			right = raw`\dRW[${s}]^j_S`;
 
 			const rightTwist = 0;
 			if (rightTwist !== 0) {
@@ -247,16 +262,67 @@ function HOTRSS({ n, alpha, page, ringType }: TRConfig) {
 		}
 		// perfectoid
 		else {
-			left = raw`\dRW[]^j_{S/R} \otimes \{ p^{} \}`;
-			right = raw`\dRW[]^j_{S/R} \otimes \{ p^{} \}`;
+			// left
+			if (s > 0) {
+				const leftLength = s - 1 - Math.max(page - 1, 0);
+				left = raw`\dRW[${leftLength}]^j_{S/R}`;
+
+				if (page > 0) {
+					const quotient = fmt(
+						Object.fromEntries(range(s, s + 1).map((r) => phiXi(r, alpha[r]))),
+					);
+					left = raw`\dfrac{${left}}{${quotient}}`;
+				}
+
+				const leftTwist = fmt(
+					Object.fromEntries(range(s).map((r) => phiXi(r, alpha[r]))),
+				);
+				if (leftTwist !== "1") {
+					left += raw`\otimes \{ ${leftTwist} \}`;
+				}
+			}
+
+			// right
+			right = raw`\dRW[${s}]^j_{S/R}`;
+
+			if (page > 0 && s > 0) {
+				right = raw`\Fil^{${s}}${right}`;
+			}
+
+			const rightTwist = fmt(
+				Object.fromEntries(
+					range(s + constrain(1, page, n + 1 - s)).map((r) => {
+						if (r === 0) return [raw`\xi`, alpha[0]];
+						if (r === 1) return [raw`\phi(\xi)`, alpha[1]];
+						return [raw`\phi^{${r}}(\xi)`, alpha[r]];
+					}),
+				),
+			);
+			if (rightTwist !== "1") {
+				right += raw`\otimes \{ ${rightTwist} \}`;
+			}
 		}
 
-		if (right) {
-			right += raw` \ar[` + "u".repeat(page) + "l]";
+		// alignment
+		left = `*!R{${left}}`;
+		right = `*!L{${right}}`;
+
+		// differentials
+		if (right && s + page <= n) {
+			if (page === 0 && s === 0) {
+			} else {
+				right += raw` \ar[` + "u".repeat(page) + "l]";
+			}
 		}
 
-		return `  ${left} & ${right}`;
+		return raw`\color{gray} ${s} &  ${left} & ${right}`;
 	});
+
+	const formattedPage = page === n + 1 ? raw`\infty` : page;
+
+	rows.push(
+		raw`E_{${formattedPage}} & \color{gray} \TR^{${n}}_{\alpha-1,j} & \color{gray} \TR^{${n}}_{\alpha,j}`,
+	);
 	const tex = "\\xymatrix{\n" + rows.join("\\\\\n") + "\n}";
 
 	return (
@@ -267,4 +333,10 @@ function HOTRSS({ n, alpha, page, ringType }: TRConfig) {
 			<pre className="bg-gray-200 rounded-sm px-2 py-1">{tex}</pre>
 		</>
 	);
+}
+
+function phiXi(phi: number, power: number) {
+	if (phi === 0) return [raw`\xi`, power];
+	if (phi === 1) return [raw`\phi(\xi)`, power];
+	return [raw`\phi^{${phi}}(\xi)`, power];
 }

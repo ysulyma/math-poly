@@ -19,6 +19,8 @@ export const macros = raw`
 }
 
 \newcommand{\dRW}[1][]{\mathrm W_{#1}\Omega}
+\newcommand{\TR}{\mathrm{TR}}
+\newcommand{\Fil}{\mathrm{Fil}}
 
 % single-letters
 \newcommand{\C}{\mathbf C}
