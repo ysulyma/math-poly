@@ -152,8 +152,16 @@ const { raw } = String;
 left = raw`\dRW[${r - 1}]^j_S`;
 ```
 
+- Inside `<MJX>`, use `\dRW[n]` (MathJax supports optional arguments)
+- Inside `<KTX>`, use `\dRW{n}` (KaTeX does not support LaTeX optional arguments)
 - String concatenation is allowed (Biome `useTemplate: "off"`)
 - Custom macros are defined in `src/macros.ts`
+
+#### Simplification/Fading Logic
+
+- When `simplified === true`, any non-positive filtration value (e.g. `\Fil^{0}` or `\Fil^{-1}`) should be omitted. When `simplified === false`, it should be included but grayed out with the `\fade` macro.
+
+- When `simplified === true`, `\dRW[n]` with `n < 0` should be replaced with `""` in the HOTRSS component, and `"0"` in the Answer component. When `simplified === false`, it should be grayed out with `\fade`. Note: this applies to the entire expression, e.g. `\dRW[-1] \otimes \{ \xi \}` should become `0`, not `0 \otimes \{\xi\}`.
 
 ### Error Handling
 

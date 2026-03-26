@@ -36,7 +36,7 @@ export const macros = raw`
 \newcommand{\R}{\mathbf R}
 \newcommand{\S}{\mathbf S}
 \newcommand{\T}{\mathbf T}
-\newcommand{\W}{\mathbf W}
+\newcommand{\W}{\mathrm W}
 \newcommand{\Z}{\mathbf Z}
 
 % KaTeX-only

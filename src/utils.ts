@@ -99,3 +99,8 @@ export function epsilon({
 export function brace(d: number, e: number) {
 	return d % e === 0 ? e : d;
 }
+
+/** Sum an array of numbers */
+export function sum(arr: number[]): number {
+	return arr.reduce((acc, val) => acc + val, 0);
+}
