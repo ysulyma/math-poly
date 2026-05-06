@@ -4,6 +4,6 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: "/papers/poly/",
-	plugins: [react(), tailwindcss()],
+  base: "/papers/poly/",
+  plugins: [react(), tailwindcss()],
 });
