@@ -218,8 +218,8 @@ export function HOTRSS({
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="block h-[100em]" ref={ref}>
-      <MJX className="block h-[100em]">{`\\(${tex}\\)`}</MJX>
+    <div className="flex flex-col" ref={ref}>
+      <MJX key={tex}>{`\\(${tex}\\)`}</MJX>
       {/* <pre className="bg-gray-200 rounded-sm px-2 py-1 max-w-[500px] whitespace-pre-wrap"> */}
       {/* 	{tex} */}
       {/* </pre> */}

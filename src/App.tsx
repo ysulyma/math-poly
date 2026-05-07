@@ -57,7 +57,7 @@ const mathjaxConfig = {
 
 export default function App() {
   return (
-    <MathJaxContext config={mathjaxConfig} hideUntilTypeset="every" version={3}>
+    <MathJaxContext config={mathjaxConfig} version={3}>
       <div className="App">
         <p>
           These are interactive widgets to explore the results/figures in my
