@@ -49,7 +49,9 @@ const mathjaxConfig = {
   tex: {
     macros: {
       dRW: [String.raw`\mathrm W_{#1}\Omega`, 1, ""],
+      Fil: String.raw`\mathrm{Fil}`,
       fade: [String.raw`\textcolor{lightgray}{#1}`, 1],
+      TR: String.raw`\mathrm{TR}`,
     },
     packages: { "[+]": ["color", "html", "ams", "xypic"] },
   },
