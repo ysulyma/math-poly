@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "customConditions": ["@liqvid/dev"],
     "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,

@@ -1,7 +1,6 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: this is fine here */
 import { KaTeXProvider, KTX, parseMacros } from "@liqvid/katex";
-import { MJX } from "@liqvid/mathjax/plain";
-import { waitFor } from "@liqvid/utils";
+import { MathJax as MJX } from "better-react-mathjax";
 import { useCallback, useEffect, useState } from "react";
 
 import { macros } from "../macros.ts";
@@ -35,12 +34,6 @@ export function TR() {
   const [ringType, setRingType] = useState<TRConfig["ringType"]>("char-p");
   const [page, setSpectralSequenceRange] = useState(0);
   const [simplified, setSimplified] = useState(true);
-
-  useEffect(() => {
-    waitFor(() => window.MathJax !== undefined).then(() => {
-      MathJax.typesetPromise();
-    });
-  }, []);
 
   // Update coefficients array when n changes
   useEffect(() => {

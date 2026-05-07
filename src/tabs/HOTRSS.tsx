@@ -1,5 +1,5 @@
-import { MJX } from "@liqvid/mathjax/plain";
 import { constrain, range } from "@liqvid/utils";
+import { MathJax as MJX } from "better-react-mathjax";
 import { useRef } from "react";
 
 import { fmt, sum } from "../utils.ts";
@@ -213,14 +213,13 @@ export function HOTRSS({
     raw`E_{${formattedPage}} & \color{gray} \alpha-1 & \color{gray} \alpha`,
   );
   const tex = "\\xymatrix{\n" + rows.join("\\\\\n") + "\n}";
+  // tex = "\\xymatrix{a}";
 
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="flex flex-col" ref={ref}>
-      <MJX display span>
-        {tex}
-      </MJX>
+    <div className="block h-[100em]" ref={ref}>
+      <MJX className="block h-[100em]">{`\\(${tex}\\)`}</MJX>
       {/* <pre className="bg-gray-200 rounded-sm px-2 py-1 max-w-[500px] whitespace-pre-wrap"> */}
       {/* 	{tex} */}
       {/* </pre> */}

@@ -4,20 +4,26 @@
     "@liqvid/katex": "^1.0.0-alpha.0",
     "@liqvid/mathjax": "^0.1.2",
     "@liqvid/utils": "^2.0.0-alpha.2",
+    "better-react-mathjax": "^3.0.1",
     "classnames": "^2.5.1",
     "radix-ui": "^1.4.2",
     "react": "^19",
     "react-dom": "^19",
     "tailwindcss": "^4.1.11"
   },
-  "description": "Scripts for the paper \"RO(G)-graded norms for prismatic and de Rham-Witt theory\"",
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
+  },
+  "description": "Scripts for the paper \"RO(G)-graded norms for prismatic and de Rham-Witt forms\"",
   "devDependencies": {
     "@biomejs/biome": "2.4.13",
-    "@tailwindcss/vite": "^4.1.11",
+    "@tailwindcss/vite": "^4.2.4",
     "@types/katex": "^0.16.7",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@vitejs/plugin-react-swc": "^3.11.0",
+    "serve": "^14.2.6",
     "typescript": "^5.8",
     "vite": "^7.0.6"
   },
