@@ -4,7 +4,7 @@ Guidelines for AI agents working in the math-poly codebase.
 
 ## Project Overview
 
-React/TypeScript application for interactive mathematical visualizations related to the paper "RO(G)-graded norms for prismatic and de Rham-Witt theory". Uses MathJax/KaTeX for LaTeX rendering.
+React/TypeScript application for interactive mathematical visualizations related to the paper "RO(G)-graded norms for prismatic and de Rham-Witt forms". Uses MathJax/KaTeX for LaTeX rendering.
 
 **Tech Stack:** React 19, TypeScript 5.8, Vite 7, Tailwind CSS 4, Biome (linting/formatting)
 
@@ -75,7 +75,6 @@ Imports are auto-organized by Biome. Follow this order:
 
 ```typescript
 // External libraries first
-import { MJX } from "@liqvid/mathjax/plain";
 import { range } from "@liqvid/utils";
 import { useCallback, useEffect, useState } from "react";
 
@@ -187,7 +186,7 @@ src/
 
 ## Key Dependencies
 
-- `@liqvid/katex` / `@liqvid/mathjax`: LaTeX rendering
+- `@liqvid/katex` / `better-react-mathjax`: LaTeX rendering
 - `@liqvid/utils`: Utility functions (e.g., `range`)
 - `radix-ui`: UI primitives (Tabs)
 - `classnames`: Conditional CSS class composition

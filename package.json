@@ -2,7 +2,6 @@
   "author": "Yuri Sulyma",
   "dependencies": {
     "@liqvid/katex": "^1.0.0-alpha.0",
-    "@liqvid/mathjax": "^0.1.2",
     "@liqvid/utils": "^2.0.0-alpha.2",
     "better-react-mathjax": "^3.0.1",
     "classnames": "^2.5.1",
